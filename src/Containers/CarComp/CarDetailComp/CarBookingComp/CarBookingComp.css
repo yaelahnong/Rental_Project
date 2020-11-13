@@ -1,0 +1,11 @@
+.booking {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.MuiIconButton-root:hover {
+    color: unset !important;
+    background-color: unset !important;
+}

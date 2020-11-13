@@ -1,0 +1,9 @@
+.MuiIconButton-root:hover {
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #eaeaea !important;
+}
+
+.MuiPickersDay-daySelected:hover {
+    background-color: #2196f3 !important;
+    color: #ffffff;
+}

@@ -1,0 +1,44 @@
+{
+  "car": [
+    {
+      "id": 3,
+      "name": "Hyundai Kia Rio",
+      "transmission": "Manual",
+      "year": "2012",
+      "price": 461000,
+      "image": "hyundai_kia_rio.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Mitsubishi Outlander",
+      "transmission": "Manual",
+      "year": 2013,
+      "price": 540000,
+      "image": "mitsubishi_outlander.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Toyota Hiace",
+      "transmission": "Manual",
+      "year": "2011",
+      "price": 420000,
+      "image": "toyota_hiace.jpg"
+    },
+    {
+      "id": 1584545521248,
+      "name": "Hyundai Similar NEW!",
+      "transmission": "Automatic",
+      "year": "2009",
+      "price": 525000,
+      "image": "hyundai_similar.jpg"
+    },
+    {
+      "id": 1584554382175,
+      "name": "Toyota Camry NEW!",
+      "transmission": "Automatic",
+      "year": "2012",
+      "price": "632000",
+      "image": "toyota_camry.jpg"
+    }
+  ]
+}

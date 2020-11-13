@@ -1,0 +1,18 @@
+.MuiPaper-elevation4 {
+    box-shadow: none !important;
+}
+
+.MuiIconButton-root:hover {
+    color: unset !important;
+    background-color: unset !important;
+}
+
+.car-info-card, .rental-info-card, .rental-pickup-card {
+    width: 95%;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 12px;
+    /* box-sizing: border-box; */
+    overflow: hidden;
+    box-shadow: 0px 1px 1px 0.25px rgba(0,0,0,0.15);
+}

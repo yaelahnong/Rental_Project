@@ -1,0 +1,46 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.history {
+    display: flex;
+    flex-direction: column;
+    background-color: #0194F3;
+    color: #FDFEFF;
+    margin: 0 8px 10px 8px;
+    border-radius: 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* box-shadow: 6px 6px 6px 0 rgba(0,0,0,0.1); */
+    box-shadow: 0px 2px 4px 1px rgba(238,238,238,1);
+}
+
+.history.history-2 {
+    background-color: #fff;
+    color: #101010;
+}
+
+.history table {
+    width: 100%;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+}
+
+.history table td:nth-child(3) {
+    text-align: right;
+}
+
+.history table td{
+    font-size: 16px;
+    padding: 2px;
+}
+
+.history-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}

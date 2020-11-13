@@ -1,0 +1,28 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-register {
+    display: flex;
+    flex-direction: column;
+    min-height: 86vh;
+}
+
+.form-register-user {
+    margin: auto;
+}
+
+.textField {
+    width: 33ch;
+}
+
+.MuiGrid-root{
+    padding-bottom: 10px;
+}
+
+.MuiButtonBase-root {
+    flex:1; 
+}
+.MuiToolbar-regular {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.24);
+}

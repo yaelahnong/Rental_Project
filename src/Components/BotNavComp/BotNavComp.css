@@ -1,0 +1,11 @@
+.MuiBottomNavigation-root {
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.MuiBottomNavigationAction-root.Mui-selected {
+    color: #0194f3 !important;
+    padding-top: 6px;
+}

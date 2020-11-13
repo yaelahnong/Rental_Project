@@ -1,0 +1,30 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-login {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.form-login-user {
+    margin: auto;
+}
+
+.textField {
+    width: 33ch;
+    letter-spacing: 1px;
+}
+
+.MuiGrid-root{
+    padding-bottom: 10px;
+}
+
+.MuiButtonBase-root {
+    flex:1; 
+}
+
+.MuiLink-underlineHover:hover {
+    cursor: pointer;
+}
