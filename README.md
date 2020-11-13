@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### `yarn install`
 
+### THIS PROJECTS REQUIRE API SERVER
+see [https://github.com/yaelahnong/Rental_API](https://github.com/yaelahnong/Rental_API)
+
 ## Available Scripts
 
 In the project directory, you can run:
