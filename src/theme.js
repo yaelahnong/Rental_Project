@@ -1,11 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blue, grey, red } from '@material-ui/core/colors';
+import { blue, grey, orange, red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
     primary: blue,
-    secondary: grey,
-    loading: red
+    secondary: orange,
   },
   status: {
     danger: 'orange',
