@@ -7,9 +7,19 @@ import { deleteTransaksi } from '../../../redux/actions/transaksi.actions';
 import { deleteDetailTransaksi } from '../../../redux/actions/detail_transaksi.actions';
 import HistoryComp from '../../HistoryComp/HistoryComp';
 import TopNavComp from '../../../Components/TopNavComp/TopNavComp';
+import { LinearProgress } from '@material-ui/core';
 
 const containerStyles = {
     paddingTop: "10px",
+    height: "calc(100vh - 112px)",
+    overflowY: "scroll",
+    boxSizing: "border-box",
+    // display: "flex",
+    // flexWrap: "wrap",
+    backgroundColor: "#ffffff"
+}
+
+const containerLoading = {
     height: "calc(100vh - 112px)",
     overflowY: "scroll",
     boxSizing: "border-box",
@@ -107,8 +117,12 @@ class HistoryPage extends Component {
         return (
             <Fragment>
                 <TopNavComp title="History" icon="help" />
-                <div className="main-content" style={containerStyles}>
-                    {viewDetailTransaksi}
+                <div className="main-content" style={this.state.isLoading ? containerLoading : containerStyles}>
+                    {
+                        this.state.isLoading 
+                        ? <LinearProgress color="secondary" /> 
+                        : viewDetailTransaksi
+                    }
                 </div>
             </Fragment>
         )
