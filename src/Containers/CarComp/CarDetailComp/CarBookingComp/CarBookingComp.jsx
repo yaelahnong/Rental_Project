@@ -122,7 +122,7 @@ class CarBookingComp extends Component {
                         </Grid>
                     </MuiPickersUtilsProvider>
                     <div style={{display: 'flex', flex: '1'}}>
-                        <Button variant="contained" onClick={() => this.props.handleSubmit(this.props.data)} size="medium" style={{backgroundColor: '#FF5E1F', color: '#fff', textTransform: 'capitalize', margin: '0 60px'}}>Continue</Button>
+                        <Button variant="contained" onClick={() => this.props.handleSubmit(this.props.data)} size="medium" style={{backgroundColor: '#FF5E1F', color: '#fff', textTransform: 'capitalize', margin: '0 60px'}}>Book Now</Button>
                     </div>
                 </div>
             

@@ -108,12 +108,6 @@ class CarBookingPage extends Component {
                 await localStorage.setItem("value", 1);
                 this.props.history.push('/history');
             }
-            // console.log('Total Pembayaran:', harga_mobil * diffDuration.days());
-            // console.log(diffDuration);
-            // console.log(formDetailTransactionNew);
-            // console.log(formTransactionNew);
-            // console.log('Ini State Transaksi',this.state.formTransaction);
-            // console.log('Ini State Detail Transaksi', this.state.formDetailTransaction);
         });
     }
 
@@ -153,10 +147,10 @@ class CarBookingPage extends Component {
 
         if(!moment(this.state.rental_time, "HH:mm A").isBefore(moment("15:01 PM", "HH:mm A"))) {
             isValid = false;
-            errorMsg['rental_time'] = "Please select between 9:00 and 15:00";
+            errorMsg['rental_time'] = "Please select between 9:00 AM and 15:00 PM";
         } else if(!moment(this.state.rental_time, "HH:mm A").isAfter(moment("08:59 AM", "HH:mm A"))) {
             isValid = false;
-            errorMsg['rental_time'] = "Please select between 9:00 and 15:00";
+            errorMsg['rental_time'] = "Please select between 9:00 AM and 15:00 PM";
         }
 
         // if(this.state.rental_time.length > 0) {
