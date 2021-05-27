@@ -8,6 +8,7 @@ import { deleteDetailTransaksi } from '../../../redux/actions/detail_transaksi.a
 import HistoryComp from '../../HistoryComp/HistoryComp';
 import TopNavComp from '../../../Components/TopNavComp/TopNavComp';
 import { LinearProgress } from '@material-ui/core';
+import { addStokMobilById } from '../../../redux/actions/mobil.actions';
 
 const containerStyles = {
     paddingTop: "10px",
@@ -75,8 +76,18 @@ class HistoryPage extends Component {
             if(data.kode_transaksi && data.id_detail_transaksi) {
                 await this.deleteTransaksi(data.kode_transaksi);
                 await this.deleteDetailTransaksi(data.id_detail_transaksi);
+                await this.onAddStokMobilById(data.id_mobil);
             }
             await this.onGetViewDetailTransaksi();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    onAddStokMobilById = async (id) => {
+        try {
+            const stok = await this.props.dispatch(addStokMobilById(localStorage.getItem('api_token'), id))
+            console.log('UPDATE STOK: ', stok);
         } catch (error) {
             console.log(error);
         }

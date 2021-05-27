@@ -14,6 +14,7 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from './theme';
 import UpdatePasswordViaEmail from './Containers/ForgotPassword/UpdatePasswordViaEmail/UpdatePasswordViaEmail';
 import PageNotFound from './img/pagenotfound.svg';
+import PaymentPage from './Containers/pages/Car/CarDetailPage/CarBookingPage/PaymentPage/PaymentPage';
 
 const NoMatch = () => {
     return (
@@ -62,6 +63,9 @@ class Home extends Component {
                                     </Route>
                                     <Route path="/booking/:carID">
                                         <CarBookingPage />
+                                    </Route>
+                                    <Route path="/payment/:carID">
+                                        <PaymentPage />
                                     </Route>
                                     <Route path="/settings">
                                         <SettingsPage />

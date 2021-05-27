@@ -5,9 +5,11 @@ import { getMobilById } from '../../../../redux/actions/mobil.actions';
 import { connect } from 'react-redux';
 import CarDetailComp from '../../../CarComp/CarDetailComp/CarDetailComp';
 import Axios from 'axios';
+import { getRentalInfo } from '../../../../redux/actions/rental_info.actions';
 
 
 class CarDetail extends Component {
+    _isMounted = true;
     constructor(props) {
         super(props)
         this.state = {
@@ -23,15 +25,21 @@ class CarDetail extends Component {
     
 
     componentDidMount() {
+        this._isMounted = true;
         if(sessionStorage.getItem("login")){
             this.onGetCarById();
+            this.onGetRentalInfo();
         } else {
             this.setState({
                 redirect: true
             })
         }
     }
-
+    
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+    
     onGetCarById = async () => {
         let id = this.props.match.params.carID;
         this.setState({
@@ -56,7 +64,7 @@ class CarDetail extends Component {
         try {
             await this.getTransactionById(id);
         } catch (error) {
-            
+            console.log(error);
         }
     }
 
@@ -73,30 +81,56 @@ class CarDetail extends Component {
         });
     }
 
+    onGetRentalInfo = async () => {
+        this.setState({
+            isLoading: true
+        });
+        try {
+            await this.props.dispatch(getRentalInfo(localStorage.getItem('api_token')));
+        } catch (error) {
+            console.log(error);
+        }
+        this.setState({
+            isLoading: false
+        });
+    }
+
     render() {
         if(this.state.redirect === true) {
             return <Redirect to={'/login'} />
         }
 
         const { mobil } = this.props
-        const mobilDetail = mobil.data_detail_mobil ? (
-            mobil.data_detail_mobil.map((item, index) => {
-                return (
-                    <CarDetailComp key={index} data={item} goBack={this.handleBack} goBooking={this.handleBooking} />
-                ) 
-            })
-        ) : (
-            // <SkeletonLoader />
-            <Fragment></Fragment>
-        )
+        const { rental_info } = this.props
+        const requirements = rental_info.data_rental_info
+        ? rental_info.data_rental_info.requirements
+        : ''
+        console.log('DATA RENTAL INFO', rental_info.data_rental_info && rental_info.data_rental_info);
+        // const mobilDetail = mobil.data_detail_mobil ? (
+        //     mobil.data_detail_mobil.map((item, index) => {
+        //         return (
+        //         ) 
+        //     })
+        // ) : (
+        //     // <SkeletonLoader />
+        //     <Fragment></Fragment>
+        // )
 
 
         return (
            <Fragment>
-               {this.state.isLoading ? (
-                //    <SkeletonLoader />
-                <p></p>
-               ) : (mobilDetail)}
+               {
+                   this.state.isLoading 
+                   ? <Fragment></Fragment>
+                   : (mobil.data_detail_mobil
+                        ? mobil.data_detail_mobil.map((item, index) => {
+                            return (
+                                    <CarDetailComp key={index} data={item} requirements={requirements} goBack={this.handleBack} goBooking={this.handleBooking} />
+                            )
+                        })
+                        : '')
+                   
+               }
            </Fragment>
         )
     }
@@ -104,8 +138,8 @@ class CarDetail extends Component {
 
 const mapStatetoProps = (state) => {
     return {
-        mobil: state.mobil
-        
+        mobil: state.mobil,
+        rental_info: state.rental_info
     }
 }
 

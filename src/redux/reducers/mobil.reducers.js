@@ -1,6 +1,7 @@
 const initialState = {
     data_mobil: [],
-    data_detail_mobil: []
+    data_detail_mobil: [],
+    data_update_stok_mobil: [],
 }
 
 
@@ -18,6 +19,18 @@ const mobil = (state = initialState, action) => {
                 data_detail_mobil: action.payload.data.message
             }
 
+        case 'INCREMENT_STOK_MOBIL_BY_ID':
+            return {
+                ...state,
+                data_update_stok_mobil: action.payload.data
+            }
+
+        case 'DECREMENT_STOK_MOBIL_BY_ID':
+            return {
+                ...state,
+                data_update_stok_mobil: action.payload.data
+            }
+            
         default:
             return state;
     }

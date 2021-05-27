@@ -37,9 +37,11 @@ class CarPage extends Component {
         if(sessionStorage.getItem("login")){
             this.onGetCar();
         } else {
-            this.setState({
-                redirect: true
-            })
+            if(this._isMounted) {
+                this.setState({
+                    redirect: true
+                })
+            }
         }
         this._isMounted = true;
     }
@@ -50,17 +52,21 @@ class CarPage extends Component {
 
 
     onGetCar = async () => {
-        this.setState({
-            isLoading: true
-        })
+        if(this._isMounted) {
+            this.setState({
+                isLoading: true
+            })
+        }
         try {
             await this.props.dispatch(getMobil(localStorage.getItem('api_token')));
         } catch (error) {
             console.log(error);
         }
-        this.setState({
-            isLoading: false
-        })
+        if(this._isMounted) {
+            this.setState({
+                isLoading: false
+            })
+        }
     }
 
     handleDetail = (id) => {

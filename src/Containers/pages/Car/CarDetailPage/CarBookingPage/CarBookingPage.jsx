@@ -5,8 +5,11 @@ import './CarBookingPage.css';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { getMobilById } from '../../../../../redux/actions/mobil.actions';
+import { minStokMobilById } from '../../../../../redux/actions/mobil.actions';
 import { postTransaksi } from '../../../../../redux/actions/transaksi.actions';
 import { postDetailTransaksi } from '../../../../../redux/actions/detail_transaksi.actions';
+import Axios from 'axios';
+import { CircularProgress } from '@material-ui/core';
 
 
 class CarBookingPage extends Component {
@@ -35,9 +38,17 @@ class CarBookingPage extends Component {
         }
     }
     
-    componentDidMount() {
+    async componentDidMount() {
         if(sessionStorage.getItem("login")){
-            this.onGetCarById();
+            const transaction = await Axios.get(`http://localhost:8000/transaksi/${sessionStorage.getItem('id_user')}?api_token=${localStorage.getItem('api_token')}`);
+            console.log(transaction);
+            if(transaction.data.message.status_transaksi === 0) {
+                alert('Harap selesaikan transaksi terlebih dahulu');
+                await localStorage.setItem("value", 1);
+                this.props.history.push('/history');
+            } else {
+                this.onGetCarById();
+            }
         } else {
             this.setState({
                 redirect: true
@@ -47,17 +58,11 @@ class CarBookingPage extends Component {
 
     onGetCarById = async () => {
         let id = this.props.match.params.carID;
-        this.setState({
-            isLoading: true
-        });
         try {
             await this.props.dispatch(getMobilById(localStorage.getItem('api_token'), id));
         } catch (error) {
             console.log(error);
         }
-        this.setState({
-            isLoading: false,
-        });
     }
 
     handleStartDateChange = (date) => {
@@ -102,11 +107,18 @@ class CarBookingPage extends Component {
             formDetailTransaction: formDetailTransactionNew
         }, async () => {
             if(this.handleValidation()) {
+                this.setState({
+                    isLoading: true
+                });
                 await this.onPostTransaksi();
                 await this.onPostDetailTransaksi();
+                await this.onMinStokMobilById();
+                this.setState({
+                    isLoading: false
+                });
                 alert('Booking Success.');
-                await localStorage.setItem("value", 1);
-                this.props.history.push('/history');
+                // await localStorage.setItem("value", 1);
+                this.props.history.push(`/payment/${this.props.match.params.carID}`);
             }
         });
     }
@@ -189,6 +201,14 @@ class CarBookingPage extends Component {
         }
     }
 
+    onMinStokMobilById = async () => {
+        try {
+            await this.props.dispatch(minStokMobilById(localStorage.getItem('api_token'), this.props.match.params.carID));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render() {
         if(this.state.redirect === true) {
             return <Redirect to={'/login'} />
@@ -201,14 +221,15 @@ class CarBookingPage extends Component {
                     startDateChange={this.handleStartDateChange} endDateChange={this.handleEndDateChange} timeChange={this.handleTimeChange} error={this.state.errorMsg} />
                 ) 
             })
-        ) : (
-            // <SkeletonLoader />
-            <Fragment></Fragment>
-        )
+        ) : ''
         
         return (
             <Fragment>
-                {this.state.isLoading ? (<Fragment></Fragment>) : (mobilDetail) }
+                {this.state.isLoading ? (
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+                        <CircularProgress />
+                    </div>
+                ) : (mobilDetail) }
             </Fragment>
         )
     }
